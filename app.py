@@ -34,15 +34,7 @@ with st.sidebar:
 
 taxa = PERFIS[perfil]
 aporte = calcular_aporte_mensal(patrimonio, prazo, taxa, capital)
-if aporte <= 0:
-    aporte = 0
-    meta_atingida_sem_aporte = True
-else:
-    meta_atingida_sem_aporte = False
-
-# atraso proporcional ao prazo
-atraso = max(round(prazo * 0.2), 1)
-prazo_atraso = max(prazo - atraso, 1)
+prazo_atraso = max(prazo - 5, 1)
 
 aporte_atraso = calcular_aporte_mensal(
     patrimonio,
@@ -51,10 +43,7 @@ aporte_atraso = calcular_aporte_mensal(
     capital
 )
 
-if aporte > 0 and aporte_atraso > 0:
-    impacto_percentual = ((aporte_atraso / aporte) - 1) * 100
-else:
-    impacto_percentual = None
+impacto_percentual = ((aporte_atraso / aporte) - 1) * 100
 
 
 df_evolucao = evolucao_patrimonio(
@@ -64,17 +53,8 @@ df_evolucao = evolucao_patrimonio(
     capital
 )
 
-if meta_atingida_sem_aporte:
-    st.success(
-        "Com o capital inicial informado e a rentabilidade estimada, "
-        "você atinge o patrimônio desejado sem necessidade de aportes mensais."
-    )
-else:
-    st.metric(
-        label="Aporte mensal necessário",
-        value=f"R$ {aporte:,.2f}"
-    )
-
+st.subheader("Aporte mensal necessário")
+st.metric("Valor mensal", f"R$ {aporte:,.2f}")
 
 st.info(
     f"💡 **Efeito do tempo:** se você começasse **5 anos depois**, "

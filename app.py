@@ -39,5 +39,5 @@ st.subheader("Aporte mensal necessário")
 st.metric("Valor mensal", f"R$ {aporte:,.2f}")
 
 st.caption(
-    "Simulação educacional. Não constitui recomendação de investimento."
+    "Esta ferramenta tem caráter exclusivamente educacional. Não constitui recomendação de investimento. Rentabilidade passada não garante resultados futuros."
 )

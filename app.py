@@ -34,16 +34,21 @@ with st.sidebar:
 
 taxa = PERFIS[perfil]
 aporte = calcular_aporte_mensal(patrimonio, prazo, taxa, capital)
-prazo_atraso = max(prazo - 5, 1)
+aporte_exibido = max(aporte, 0)
+mostrar_efeito_tempo = aporte > 0
 
-aporte_atraso = calcular_aporte_mensal(
-    patrimonio,
-    prazo_atraso,
-    taxa,
-    capital
-)
+if mostrar_efeito_tempo:
+    prazo_atraso = max(prazo - 5, 1)
 
-impacto_percentual = ((aporte_atraso / aporte) - 1) * 100
+    aporte_atraso = calcular_aporte_mensal(
+        patrimonio,
+        prazo_atraso,
+        taxa,
+        capital
+    )
+
+    impacto_percentual = ((aporte_atraso / aporte) - 1) * 100
+
 
 
 df_evolucao = evolucao_patrimonio(
@@ -54,13 +59,15 @@ df_evolucao = evolucao_patrimonio(
 )
 
 st.subheader("Aporte mensal necessário")
-st.metric("Valor mensal", f"R$ {aporte:,.2f}")
+st.metric("Valor mensal", f"R$ {aporte_exibido:,.2f}")
 
-st.info(
-    f"💡 **Efeito do tempo:** se você começasse **5 anos depois**, "
-    f"o aporte mensal subiria para **R$ {aporte_atraso:,.2f}**, "
-    f"um aumento de **{impacto_percentual:.1f}%**."
-)
+
+if mostrar_efeito_tempo:
+    st.info(
+        f"💡 **Efeito do tempo:** se você começasse **5 anos depois**, "
+        f"o aporte mensal subiria para **R$ {aporte_atraso:,.2f}**, "
+        f"um aumento de **{impacto_percentual:.1f}%**."
+    )
 
 
 st.subheader("Evolução do patrimônio ao longo do tempo")

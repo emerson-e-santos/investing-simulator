@@ -47,7 +47,7 @@ with st.sidebar:
     )
 
 taxa = PERFIS[perfil]
-st.caption(f"Perfil selecionado: {DESCRICOES_PERFIL[perfil]}")
+st.caption(f"Perfil selecionado: **{perfil}** — {DESCRICOES_PERFIL[perfil]}")
 aporte = calcular_aporte_mensal(patrimonio, prazo, taxa, capital)
 aporte_exibido = max(aporte, 0)
 mostrar_efeito_tempo = aporte > 0

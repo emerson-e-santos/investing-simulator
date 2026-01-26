@@ -61,6 +61,12 @@ df_evolucao = evolucao_patrimonio(
 st.subheader("Aporte mensal necessário")
 st.metric("Valor mensal", f"R$ {aporte_exibido:,.2f}")
 
+if aporte <= 0:
+    st.success(
+        "🎯 **Boa notícia!** Com o capital inicial informado, "
+        "seu objetivo pode ser alcançado **sem necessidade de novos aportes mensais**. "
+        "Aqui, o tempo e os juros compostos estão trabalhando a seu favor."
+    )
 
 if mostrar_efeito_tempo:
     st.info(

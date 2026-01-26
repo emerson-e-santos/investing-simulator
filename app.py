@@ -30,7 +30,13 @@ with st.sidebar:
         step=5000
     )
 
-    perfil = st.selectbox("Perfil de risco", list(PERFIS.keys()))
+    perfil = st.selectbox(
+    "Perfil de risco",
+    list(PERFIS.keys()),
+    help=DESCRICOES_PERFIL.get("Conservador") + "\n\n" +
+         DESCRICOES_PERFIL.get("Moderado") + "\n\n" +
+         DESCRICOES_PERFIL.get("Agressivo")
+    )
 
 taxa = PERFIS[perfil]
 aporte = calcular_aporte_mensal(patrimonio, prazo, taxa, capital)

@@ -2,6 +2,12 @@ import streamlit as st
 from calculations import (calcular_aporte_mensal, evolucao_patrimonio)
 from scenarios import PERFIS
 
+DESCRICOES_PERFIL = {
+    "Conservador": "Menor oscilação, foco em renda fixa e preservação de capital. Indicado para quem prioriza segurança.",
+    "Moderado": "Equilíbrio entre segurança e crescimento. Combina renda fixa e variável.",
+    "Agressivo": "Maior potencial de retorno no longo prazo, mas com oscilações mais intensas. Indicado para quem tolera volatilidade."
+}
+
 st.set_page_config(page_title="Simulador de Patrimônio", layout="wide")
 
 st.title("Simulador de Patrimônio & Investimentos")
@@ -31,14 +37,17 @@ with st.sidebar:
     )
 
     perfil = st.selectbox(
-    "Perfil de risco",
-    list(PERFIS.keys()),
-    help=DESCRICOES_PERFIL.get("Conservador") + "\n\n" +
-         DESCRICOES_PERFIL.get("Moderado") + "\n\n" +
-         DESCRICOES_PERFIL.get("Agressivo")
+        "Perfil de risco",
+        list(PERFIS.keys()),
+        help=(
+            f"🟢 Conservador: {DESCRICOES_PERFIL['Conservador']}\n\n"
+            f"🟡 Moderado: {DESCRICOES_PERFIL['Moderado']}\n\n"
+            f"🔴 Agressivo: {DESCRICOES_PERFIL['Agressivo']}"
+        )
     )
 
 taxa = PERFIS[perfil]
+st.caption(f"Perfil selecionado: {DESCRICOES_PERFIL[perfil]}")
 aporte = calcular_aporte_mensal(patrimonio, prazo, taxa, capital)
 aporte_exibido = max(aporte, 0)
 mostrar_efeito_tempo = aporte > 0
@@ -54,8 +63,6 @@ if mostrar_efeito_tempo:
     )
 
     impacto_percentual = ((aporte_atraso / aporte) - 1) * 100
-
-
 
 df_evolucao = evolucao_patrimonio(
     patrimonio,

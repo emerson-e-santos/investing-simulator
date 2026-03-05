@@ -75,7 +75,7 @@ df_evolucao = evolucao_patrimonio(
 )
 
 st.subheader("Aporte mensal necessário")
-st.metric("Valor mensal", {formatar_moeda(aporte_exibido)})
+st.metric("Valor mensal", f"{formatar_moeda(aporte_exibido)}")
 
 if aporte <= 0:
     st.success(

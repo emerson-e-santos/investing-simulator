@@ -30,3 +30,6 @@ def evolucao_patrimonio(
         })
 
     return pd.DataFrame(dados)
+
+def formatar_moeda(valor):
+    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")

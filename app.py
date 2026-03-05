@@ -46,7 +46,8 @@ with st.sidebar:
         )
     )
 st.subheader(
-    f"Objetivo: {formatar_moeda(patrimonio)} em {prazo} anos"
+    f"Objetivo: {formatar_moeda(patrimonio)} em {prazo} anos, "
+    f"partindo de {formatar_moeda(capital)}"
 )
 
 taxa = PERFIS[perfil]

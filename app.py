@@ -1,5 +1,5 @@
 import streamlit as st
-from calculations import (calcular_aporte_mensal, evolucao_patrimonio)
+from calculations import (calcular_aporte_mensal, evolucao_patrimonio, formatar_moeda)
 from scenarios import PERFIS
 
 DESCRICOES_PERFIL = {
@@ -46,7 +46,7 @@ with st.sidebar:
         )
     )
 st.subheader(
-    f"Objetivo: R$ {patrimonio:,.0f} em {prazo} anos"
+    f"Objetivo: {formatar_moeda(patrimonio)} em {prazo} anos"
 )
 
 taxa = PERFIS[perfil]
@@ -75,7 +75,7 @@ df_evolucao = evolucao_patrimonio(
 )
 
 st.subheader("Aporte mensal necessário")
-st.metric("Valor mensal", f"R$ {aporte_exibido:,.2f}")
+st.metric("Valor mensal", f"formatar_moeda(aporte_exibido)")
 
 if aporte <= 0:
     st.success(
@@ -87,7 +87,7 @@ if aporte <= 0:
 if mostrar_efeito_tempo:
     st.info(
         f"💡 **Efeito do tempo:** se você começasse **5 anos depois**, "
-        f"o aporte mensal subiria para **R$ {aporte_atraso:,.2f}**, "
+        f"o aporte mensal subiria para **formatar_moeda(aporte_atrasado)**, "
         f"um aumento de **{impacto_percentual:.1f}%**."
     )
 

@@ -87,7 +87,7 @@ if aporte <= 0:
 if mostrar_efeito_tempo:
     st.info(
         f"💡 **Efeito do tempo:** se você começasse **5 anos depois**, "
-        f"o aporte mensal subiria para **{formatar_moeda(aporte_atrasado)}**, "
+        f"o aporte mensal subiria para **{formatar_moeda(aporte_atraso)}**, "
         f"um aumento de **{impacto_percentual:.1f}%**."
     )
 

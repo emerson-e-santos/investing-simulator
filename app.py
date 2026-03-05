@@ -48,7 +48,7 @@ with st.sidebar:
 if capital > 0:
     st.markdown(
         f"### Objetivo: {formatar_moeda(patrimonio)} em {prazo} anos, "
-        f"partindo de {formatar_moeda(capital)}"
+        f"### partindo de {formatar_moeda(capital)}"
     )
 else:
     st.markdown(

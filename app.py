@@ -12,6 +12,10 @@ st.set_page_config(page_title="Simulador de Patrimônio", layout="wide")
 
 st.title("Simulador de Patrimônio & Investimentos")
 
+st.subheader(
+    f"Objetivo: R$ {patrimonio:,.0f} em {prazo} anos"
+)
+
 st.write(
     "Informe seu objetivo financeiro e veja quanto precisará investir por mês "
     "de acordo com diferentes perfis de risco."

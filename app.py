@@ -45,9 +45,15 @@ with st.sidebar:
             f"🔴 Agressivo: {DESCRICOES_PERFIL['Agressivo']}"
         )
     )
-st.subheader(
-    f"Objetivo: {formatar_moeda(patrimonio)} em {prazo} anos partindo de {formatar_moeda(capital)}"
-)
+if capital > 0:
+    st.markdown(
+        f"### Objetivo: {formatar_moeda(patrimonio)} em {prazo} anos, "
+        f"partindo de {formatar_moeda(capital)}"
+    )
+else:
+    st.markdown(
+        f"### Objetivo: {formatar_moeda(patrimonio)} em {prazo} anos"
+    )
 
 taxa = PERFIS[perfil]
 st.caption(f"Perfil selecionado: **{perfil}** — {DESCRICOES_PERFIL[perfil]}")
